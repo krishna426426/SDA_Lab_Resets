@@ -1,3 +1,5 @@
+# This is the sample file that execute on some of the devices and the result is stored in this file and also displayed on the screen while executing
+
 INFO:root:
 
 C3850-2>enable
