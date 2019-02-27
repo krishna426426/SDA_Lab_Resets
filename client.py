@@ -3,10 +3,9 @@
 # Copyright (c) 2018  Krishna Kotha <krkotha@cisco.com>
 # All rights reserved.
 
-# import the requests library
-
 # this is the script you need to executed to run on all the devices. It will get all the device details from the ip_address.py file and the command to be executed from the commands.py file
 
+# import the requests library
 import v2
 import ip_address
 import sys
