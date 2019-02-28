@@ -14,9 +14,8 @@ import logging
 #switch_name = raw_input('Please enter switch name: ')
 
 for key in ip_address.switch_list:
-
-    # prints the ip address and port number of all the switches while executing each one
-    print ("\n\nThe IP Address and port number of the switch is: %s %s \n" % ((ip_address.switch_list.get(key)['HOST']), (ip_address.switch_list.get(key)['port'])))
+    #creates a log file called output.log
+    logging.basicConfig(filename='output.log', filemode='w', level=logging.INFO)
     obj = v2.NetworkDevice()
 
     # creates the telnet connection (using console) for each device and stores the output to the result
@@ -24,6 +23,5 @@ for key in ip_address.switch_list:
     print result
 
     #logs the output to a output log file, when executing this script it re-erases the file everytime
-    logging.basicConfig(filename='output.log', filemode='w', level=logging.INFO)
     logging.info(result)
 
