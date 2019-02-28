@@ -1,4 +1,4 @@
-This repo is private and only for SDA RESET LABS using Python Scripts. Make sure you install some libraries before you start.
+This repo is private and only for SDA RESET LABS using Python Scripts. Make sure you install some libraries such as paramiko, requests and so on before you start.
 
 ### client.py
 Run the client.py file to execute the script on all devices.
