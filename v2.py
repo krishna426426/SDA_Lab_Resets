@@ -29,16 +29,19 @@ class NetworkDevice:
         try:
             #creates a telnet connection to the switch
             tn = telnetlib.Telnet(switch['HOST'], switch['port'], timeout=1)
+            time.sleep(1)
+            logging.info("\n----------------------------------------------------\nThe IP Address and port number of the switch is: %s %s \n" % (switch['HOST'], switch['port']))
+            print ("\n----------------------------------------------------\nThe IP Address and port number of the switch is: %s %s \n" % (switch['HOST'], switch['port']))
             time.sleep(2)
             tn.write("\r")
-            time.sleep(3)
+            time.sleep(2)
 
             access_verify = '\r\n\r\nUser Access Verification\r\n\r\nUsername: '
 
             # if switch prompts username then enter the username if not skip
-            if tn.read_until("Username: ", 3) == access_verify:
+            if tn.read_until("Username: ", 2) == access_verify:
                 tn.write(switch['user'] + "\r")
-                tn.read_until("Password: ", 3) == "Password"
+                tn.read_until("Password: ", 2) == "Password"
                 tn.write(switch['password'] + "\r")
 
             # typing in the enable secret password
@@ -53,18 +56,19 @@ class NetworkDevice:
 
             # execute the command from the command file
             tn.write(commands.exec_command1 + "\r")
-            time.sleep(4)
+            time.sleep(3)
 
             # exit out of the switch
             tn.write("exit\r")
-            time.sleep(3)
+            time.sleep(2)
 
             #read the whatever output it displayed to the main function
             str_return_val = tn.read_very_eager()
-            time.sleep(3)
+            time.sleep(2)
             return str_return_val
 
         #if any of the device is not reachable, it skips that device and continue on other devices
         except Exception:
             pass
-            print ("\n\nThis switch is not reachable: %s %s \n" % (switch['HOST'], switch['port']))
+            print ("\n----------------------------------------------------\nThis switch is not reachable: %s %s \n" % (switch['HOST'], switch['port']))
+            logging.info("\n----------------------------------------------------\nThis switch is not reachable: %s %s \n" % (switch['HOST'], switch['port']))
